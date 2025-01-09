@@ -1,0 +1,116 @@
+.login-container {
+  min-height: 100vh;
+  background-color: #F5E6D3;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.logo {
+  margin: 60px 0;
+  
+  &-circle {
+    width: 120px;
+    height: 120px;
+    background-color: #8B5E3C;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-house {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2L2 12h3v8h14v-8h3L12 2z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+}
+
+.step-container {
+  width: 100%;
+  margin: 40px 0;
+}
+
+.title {
+  font-size: 32px;
+  color: #8B5E3C;
+  margin-bottom: 40px;
+  display: block;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.option-item {
+  background-color: white;
+  padding: 24px;
+  border-radius: 16px;
+  font-size: 28px;
+  color: #8B5E3C;
+  text-align: center;
+  
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.input-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  
+  .input-field {
+    flex: 1;
+    background-color: white;
+    padding: 24px;
+    border-radius: 16px;
+    font-size: 28px;
+    box-sizing: border-box;
+  }
+  
+  .send-btn {
+    background-color: #8B5E3C;
+    color: white;
+    padding: 24px 40px;
+    border-radius: 16px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    
+    &:active {
+      opacity: 0.8;
+    }
+  }
+}
+
+.return-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .return-icon {
+    font-size: 40px;
+    color: #8B5E3C;
+  }
+}
+
+.welcome-text {
+  font-size: 28px;
+  color: #8B5E3C;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 40px;
+} 
