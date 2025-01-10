@@ -1,1 +1,23 @@
- 
+# Dependencies
+node_modules/
+dist/
+.temp/
+.rn_temp/
+
+# Environment variables
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes 

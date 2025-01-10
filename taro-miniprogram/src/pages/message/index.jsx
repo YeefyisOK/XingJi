@@ -24,7 +24,9 @@ export default function Message() {
     setUserInfo(storedUserInfo)
     const service = new ChatService(
       Taro.getStorageSync('userId') || Date.now().toString(),
-      storedUserInfo.personality
+      storedUserInfo.personality,
+      storedUserInfo.nickname,
+      storedUserInfo.callMe
     )
     setChatService(service)
 
@@ -49,15 +51,15 @@ export default function Message() {
 
     const userMessage = inputValue.trim()
     setInputValue('')
-    
+
     // Add user message to chat
     setMessages(prev => [...prev, { text: userMessage, isBot: false }])
-    
+
     setIsLoading(true)
     try {
       // Get bot response
       const reply = await chatService.sendMessage(userMessage)
-      
+
       // Add bot response to chat
       setMessages(prev => [...prev, { text: reply, isBot: true }])
     } catch (error) {
@@ -85,15 +87,15 @@ export default function Message() {
         </View>
       </View>
 
-      <ScrollView 
+      <ScrollView
         className='message-list'
         scrollY
         scrollWithAnimation
         enableFlex
       >
         {messages.map((msg, index) => (
-          <View 
-            key={index} 
+          <View
+            key={index}
             className={`message-item ${msg.isBot ? 'bot' : 'user'}`}
           >
             {msg.isBot && (
@@ -140,7 +142,7 @@ export default function Message() {
           disabled={isLoading}
         />
         <View className='input-actions'>
-          <View 
+          <View
             className={`send-btn ${isLoading ? 'disabled' : ''}`}
             onClick={handleSend}
           >

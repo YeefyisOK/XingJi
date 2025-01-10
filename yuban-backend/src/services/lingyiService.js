@@ -7,7 +7,7 @@ class LingyiService {
     this.BASE_URL = 'https://api.lingyiwanwu.com/v1';
   }
 
-  async generateResponse(messages, personality) {
+  async generateResponse(messages, personality, botName, userName) {
     try {
       const formattedMessages = messages.map(msg => ({
         role: msg.role || 'user',
@@ -15,16 +15,16 @@ class LingyiService {
       }));
 
       const requestBody = {
-        model: "lingyi-chat",
+        model: "yi-lightning",
         messages: [
           {
             role: 'system',
-            content: this.getSystemPrompt(personality)
+            content: this.getSystemPrompt(personality, botName, userName)
           },
           ...formattedMessages
         ],
         temperature: 0.7,
-        max_tokens: 150,
+        max_tokens: 1500,
         stream: false
       };
 
@@ -53,16 +53,17 @@ class LingyiService {
     }
   }
 
-  getSystemPrompt(personality) {
-    const basePrompt = `你是一个${personality}性格的AI伙伴。
-    请用简短、自然的对话方式回应。保持以下特点：
+  getSystemPrompt(personality, botName, userName) {
+    const basePrompt = `你是一个名叫${botName}的${personality}性格的AI伙伴。
+    你正在和${userName}聊天。请用简短、自然的对话方式回应。保持以下特点：
     1. 始终保持${personality}的性格特征
-    2. 用友好的语气交谈
+    2. 用友好的语气交谈，称呼对方为"${userName}"
     3. 回答要简洁，通常不超过50个字
     4. 适当使用表情符号
     5. 避免重复用户的话
     6. 根据上下文自然地延续对话
-    7. 不要过分正式，要像朋友间聊天`;
+    7. 不要过分正式，要像朋友间聊天
+    8. 记住你的名字是${botName}`;
 
     switch (personality) {
       case '温柔贴心':

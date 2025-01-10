@@ -10,9 +10,9 @@ class ChatController {
 
   async handleChat(req, res) {
     try {
-      const { message, userId, personality } = req.body;
+      const { message, userId, personality, botName, userName } = req.body;
 
-      if (!message || !userId || !personality) {
+      if (!message || !userId || !personality || !botName || !userName) {
         return res.status(400).json({ error: '缺少必要参数' });
       }
 
@@ -20,7 +20,7 @@ class ChatController {
       const messages = conversationService.addMessage(userId, message);
 
       // Generate AI response using the selected service
-      const reply = await this.aiService.generateResponse(messages, personality);
+      const reply = await this.aiService.generateResponse(messages, personality, botName, userName);
 
       // Add AI response to conversation
       conversationService.addMessage(userId, reply, false);
@@ -35,7 +35,7 @@ class ChatController {
   async clearHistory(req, res) {
     try {
       const { userId } = req.body;
-      
+
       if (!userId) {
         return res.status(400).json({ error: '缺少用户ID' });
       }
@@ -51,7 +51,7 @@ class ChatController {
   async getHistory(req, res) {
     try {
       const { userId } = req.query;
-      
+
       if (!userId) {
         return res.status(400).json({ error: '缺少用户ID' });
       }

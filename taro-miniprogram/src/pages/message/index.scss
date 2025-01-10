@@ -50,15 +50,18 @@
   
   &.user {
     flex-direction: row-reverse;
-    justify-content: flex-start;
+    justify-content: flex-end;
     
     .message-content {
       margin-left: 0;
       margin-right: 20px;
+      display: flex;
+      justify-content: flex-end;
       
       .message-text {
         background-color: #95EC69;
         border-radius: 20px 4px 20px 20px;
+        margin-left: auto;
       }
     }
   }
@@ -104,6 +107,7 @@
 .message-content {
   margin-left: 20px;
   max-width: 70%;
+  flex: 0 1 auto;
 }
 
 .message-text {
@@ -112,6 +116,16 @@
   font-size: 28px;
   line-height: 1.4;
   word-break: break-all;
+  max-width: 100%;
+  
+  &.typing {
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 4em;
+      animation: typing 1.5s infinite;
+    }
+  }
 }
 
 .input-container {
@@ -154,4 +168,5 @@
   25% { content: '.'; }
   50% { content: '..'; }
   75% { content: '...'; }
+  100% { content: '...'; }
 } 
